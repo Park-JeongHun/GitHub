@@ -3,11 +3,65 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Collections;
 
 namespace ConsoleFM_Project
 {
 
-    class Human //이름,나이,성별,관중 or 관계자 구분
+    enum Buff
+    {
+
+        STRENGTH_UP = 10,
+        STAMINA_UP,
+        JUMPING_UP,
+        SHOTPOWER_UP,
+        REFLECTION_UP,
+        AGILLITY_UP,
+        SPRINT_UP,
+        ACCELERATION_UP,
+        PASSINGACCURACY_UP,
+        HEADINGACCURACY_UP,
+        SHOTACCURACY_UP,
+        DRIBBLE_UP,
+        TACKLE_UP,
+        SLIDINGTACKLE_UP,
+        MANTOMAN_UP,
+        POSITIONING_UP,
+        VISION_UP,
+        GK_HANDLING_UP,
+        GK_ONEONONE_UP,
+        GK_DIVING_UP
+
+    }
+
+    enum Debuff
+    {
+
+        STRENGTH_DOWN,
+        STAMINA_DOWN,
+        JUMPING_DOWN,
+        SHOTPOWER_DOWN,
+        REFLECTION_DOWN,
+        AGILLITY_DOWN,
+        SPRINT_DOWN,
+        ACCELERATION_DOWN,
+        PASSINGACCURACY_DOWN,
+        HEADINGACCURACY_DOWN,
+        SHOTACCURACY_DOWN,
+        DRIBBLE_DOWN,
+        TACKLE_DOWN,
+        SLIDINGTACKLE_DOWN,
+        MANTOMAN_DOWN,
+        POSITIONING_DOWN,
+        VISION_DOWN,
+        GK_HANDLING_DOWN,
+        GK_ONEONONE_DOWN,
+        GK_DIVING_DOWN
+
+    }
+
+    public class Human //이름,나이,성별,관중 or 관계자 구분
     {
 
         public string name;    //이름
@@ -65,8 +119,11 @@ namespace ConsoleFM_Project
 
     }
 
-    class Player : Human
+    public class Player : Human
     {
+
+        static List<String> buffList = new List<String>();      //버프 리스트 
+        static List<String> debuffList = new List<String>();    //디버프 리스트
 
         public override void SnackBar()
         {
@@ -96,6 +153,310 @@ namespace ConsoleFM_Project
 
             Console.WriteLine("Number: {0} | Position: {1} | Name: {2} | Preferred Foot: {3} | Weak Foot: {4}"
                              , backNumb, position, name, prefFoot, weakFoot);
+
+        }
+
+        public void BuffAndDebuff()
+        {
+
+            StreamReader buff = new StreamReader(@"C:\Users\ghkkl\source\repos\ConsoleFM_Project\ConsoleFM_Project\Database\Buff.txt");
+            StreamReader debuff = new StreamReader(@"C:\Users\ghkkl\source\repos\ConsoleFM_Project\ConsoleFM_Project\Database\DeBuff.txt");
+
+            //스트림리더 를 이용해 폴더안의 메모장 파일을 읽어옴
+
+            string buffContents = "";
+            string debuffContents = "";
+
+            while (buff.Peek() >= 0) //리스트에 추가하는 부분
+            {
+
+                buffContents = buff.ReadLine();
+                debuffContents = debuff.ReadLine();
+                buffList.Add(buffContents);
+                debuffList.Add(debuffContents);
+
+            }
+
+            Dictionary<Buff, string> buffDictonary = new Dictionary<Buff, string>()
+            {
+                {Buff.STRENGTH_UP, buffList[0]},
+                {Buff.STAMINA_UP, buffList[1] },
+                {Buff.JUMPING_UP,buffList[2] },
+                {Buff.SHOTPOWER_UP, buffList[3] },
+                {Buff.REFLECTION_UP, buffList[4] },
+                {Buff.AGILLITY_UP, buffList[5] },
+                {Buff.SPRINT_UP, buffList[6] },
+                {Buff.ACCELERATION_UP, buffList[7] },
+                {Buff.PASSINGACCURACY_UP, buffList[8] },
+                {Buff.HEADINGACCURACY_UP, buffList[9] },
+                {Buff.SHOTACCURACY_UP, buffList[10] },
+                {Buff.DRIBBLE_UP, buffList[11] },
+                {Buff.TACKLE_UP, buffList[12] },
+                {Buff.SLIDINGTACKLE_UP,buffList[13] },
+                {Buff.MANTOMAN_UP,buffList[14] },
+                {Buff.POSITIONING_UP, buffList[15] },
+                {Buff.VISION_UP, buffList[16] },
+                {Buff.GK_HANDLING_UP,buffList[17] },
+                {Buff.GK_ONEONONE_UP,buffList[18] },
+                {Buff.GK_DIVING_UP,buffList[19] }
+            };
+
+            Dictionary<Debuff, string> debuffDictonary = new Dictionary<Debuff, string>()
+            {
+                {Debuff.STRENGTH_DOWN, debuffList[0]},
+                {Debuff.STAMINA_DOWN, debuffList[1] },
+                {Debuff.JUMPING_DOWN, debuffList[2] },
+                {Debuff.SHOTPOWER_DOWN, debuffList[3] },
+                {Debuff.REFLECTION_DOWN, debuffList[4] },
+                {Debuff.AGILLITY_DOWN, debuffList[5] },
+                {Debuff.SPRINT_DOWN, debuffList[6] },
+                {Debuff.ACCELERATION_DOWN, debuffList[7] },
+                {Debuff.PASSINGACCURACY_DOWN, debuffList[8] },
+                {Debuff.HEADINGACCURACY_DOWN, debuffList[9] },
+                {Debuff.SHOTACCURACY_DOWN, debuffList[10] },
+                {Debuff.DRIBBLE_DOWN, debuffList[11] },
+                {Debuff.TACKLE_DOWN, debuffList[12] },
+                {Debuff.SLIDINGTACKLE_DOWN, debuffList[13] },
+                {Debuff.MANTOMAN_DOWN, debuffList[14] },
+                {Debuff.POSITIONING_DOWN, debuffList[15] },
+                {Debuff.VISION_DOWN, debuffList[16] },
+                {Debuff.GK_HANDLING_DOWN, debuffList[17] },
+                {Debuff.GK_ONEONONE_DOWN, debuffList[18] },
+                {Debuff.GK_DIVING_DOWN, debuffList[19] }
+            };
+
+            Buff buffEnum;
+            Debuff debuffEnum;
+
+            Random randomBuff = new Random();
+            Random randomDebuff = new Random();
+
+            int buffNumb = randomBuff.Next(0, 56);
+            int debuffNumb = randomDebuff.Next(0, 46);
+
+            buffEnum = (Buff)buffNumb;
+            debuffEnum = (Debuff)debuffNumb;
+
+            string buffOutput = "";
+            string debuffOutput = "";
+
+            switch (buffEnum)
+            {
+
+                case Buff.STRENGTH_UP:
+                    buffDictonary.TryGetValue(Buff.STRENGTH_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.STAMINA_UP:
+                    buffDictonary.TryGetValue(Buff.STAMINA_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.JUMPING_UP:
+                    buffDictonary.TryGetValue(Buff.JUMPING_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.SHOTPOWER_UP:
+                    buffDictonary.TryGetValue(Buff.SHOTPOWER_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.REFLECTION_UP:
+                    buffDictonary.TryGetValue(Buff.REFLECTION_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.AGILLITY_UP:
+                    buffDictonary.TryGetValue(Buff.AGILLITY_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.SPRINT_UP:
+                    buffDictonary.TryGetValue(Buff.SPRINT_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.ACCELERATION_UP:
+                    buffDictonary.TryGetValue(Buff.ACCELERATION_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.PASSINGACCURACY_UP:
+                    buffDictonary.TryGetValue(Buff.PASSINGACCURACY_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.HEADINGACCURACY_UP:
+                    buffDictonary.TryGetValue(Buff.HEADINGACCURACY_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.SHOTACCURACY_UP:
+                    buffDictonary.TryGetValue(Buff.SHOTACCURACY_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.DRIBBLE_UP:
+                    buffDictonary.TryGetValue(Buff.DRIBBLE_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.TACKLE_UP:
+                    buffDictonary.TryGetValue(Buff.TACKLE_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.SLIDINGTACKLE_UP:
+                    buffDictonary.TryGetValue(Buff.SLIDINGTACKLE_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.MANTOMAN_UP:
+                    buffDictonary.TryGetValue(Buff.MANTOMAN_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.POSITIONING_UP:
+                    buffDictonary.TryGetValue(Buff.POSITIONING_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.VISION_UP:
+                    buffDictonary.TryGetValue(Buff.VISION_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.GK_HANDLING_UP:
+                    buffDictonary.TryGetValue(Buff.GK_HANDLING_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.GK_ONEONONE_UP:
+                    buffDictonary.TryGetValue(Buff.GK_ONEONONE_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                case Buff.GK_DIVING_UP:
+                    buffDictonary.TryGetValue(Buff.GK_DIVING_UP, out buffOutput);
+                    Console.WriteLine(name + buffOutput);
+                    break;
+
+                default:
+                    Console.WriteLine("버프가 적용되지 않았습니다.");
+                    break;
+
+            }
+
+            switch (debuffEnum)
+            {
+
+                case Debuff.STRENGTH_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.STRENGTH_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.STAMINA_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.STAMINA_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.JUMPING_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.JUMPING_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.SHOTPOWER_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.SHOTPOWER_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.REFLECTION_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.REFLECTION_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.AGILLITY_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.AGILLITY_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.SPRINT_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.SPRINT_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.ACCELERATION_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.ACCELERATION_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.PASSINGACCURACY_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.PASSINGACCURACY_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.HEADINGACCURACY_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.HEADINGACCURACY_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.SHOTACCURACY_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.SHOTACCURACY_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.DRIBBLE_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.DRIBBLE_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.TACKLE_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.TACKLE_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.SLIDINGTACKLE_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.SLIDINGTACKLE_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.MANTOMAN_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.MANTOMAN_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.POSITIONING_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.POSITIONING_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.VISION_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.VISION_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.GK_HANDLING_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.GK_HANDLING_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.GK_ONEONONE_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.GK_ONEONONE_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                case Debuff.GK_DIVING_DOWN:
+                    debuffDictonary.TryGetValue(Debuff.GK_DIVING_DOWN, out debuffOutput);
+                    Console.WriteLine(name + debuffOutput);
+                    break;
+
+                default:
+                    Console.WriteLine("디버프가 적용되지 않았습니다.");
+                    break;
+
+            }
 
         }
 
@@ -360,6 +721,7 @@ namespace ConsoleFM_Project
 
         static void Main()
         {
+
             bool isBool = true;
 
             while (isBool) //while 문을 써서 계속 메뉴 돌아다닐 수 있게
@@ -609,6 +971,8 @@ namespace ConsoleFM_Project
 
                 player.SnackBar();
 
+                player.BuffAndDebuff();
+
                 Console.WriteLine("등록을 종료 하려면 (N/n)을 입력해 주세요.\n");
                 Console.WriteLine("입력을 계속하는 경우 아무키나 눌러주세요.\n");
 
@@ -733,6 +1097,8 @@ namespace ConsoleFM_Project
             Select1();
 
         }
+
+
 
     }
 
