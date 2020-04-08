@@ -177,56 +177,19 @@ namespace ConsoleFM_Project
 
             }
 
-            Dictionary<Buff, string> buffDictonary = new Dictionary<Buff, string>()
-            {
-                {Buff.STRENGTH_UP, buffList[0]},
-                {Buff.STAMINA_UP, buffList[1] },
-                {Buff.JUMPING_UP,buffList[2] },
-                {Buff.SHOTPOWER_UP, buffList[3] },
-                {Buff.REFLECTION_UP, buffList[4] },
-                {Buff.AGILLITY_UP, buffList[5] },
-                {Buff.SPRINT_UP, buffList[6] },
-                {Buff.ACCELERATION_UP, buffList[7] },
-                {Buff.PASSINGACCURACY_UP, buffList[8] },
-                {Buff.HEADINGACCURACY_UP, buffList[9] },
-                {Buff.SHOTACCURACY_UP, buffList[10] },
-                {Buff.DRIBBLE_UP, buffList[11] },
-                {Buff.TACKLE_UP, buffList[12] },
-                {Buff.SLIDINGTACKLE_UP,buffList[13] },
-                {Buff.MANTOMAN_UP,buffList[14] },
-                {Buff.POSITIONING_UP, buffList[15] },
-                {Buff.VISION_UP, buffList[16] },
-                {Buff.GK_HANDLING_UP,buffList[17] },
-                {Buff.GK_ONEONONE_UP,buffList[18] },
-                {Buff.GK_DIVING_UP,buffList[19] }
-            };
-
-            Dictionary<Debuff, string> debuffDictonary = new Dictionary<Debuff, string>()
-            {
-                {Debuff.STRENGTH_DOWN, debuffList[0]},
-                {Debuff.STAMINA_DOWN, debuffList[1] },
-                {Debuff.JUMPING_DOWN, debuffList[2] },
-                {Debuff.SHOTPOWER_DOWN, debuffList[3] },
-                {Debuff.REFLECTION_DOWN, debuffList[4] },
-                {Debuff.AGILLITY_DOWN, debuffList[5] },
-                {Debuff.SPRINT_DOWN, debuffList[6] },
-                {Debuff.ACCELERATION_DOWN, debuffList[7] },
-                {Debuff.PASSINGACCURACY_DOWN, debuffList[8] },
-                {Debuff.HEADINGACCURACY_DOWN, debuffList[9] },
-                {Debuff.SHOTACCURACY_DOWN, debuffList[10] },
-                {Debuff.DRIBBLE_DOWN, debuffList[11] },
-                {Debuff.TACKLE_DOWN, debuffList[12] },
-                {Debuff.SLIDINGTACKLE_DOWN, debuffList[13] },
-                {Debuff.MANTOMAN_DOWN, debuffList[14] },
-                {Debuff.POSITIONING_DOWN, debuffList[15] },
-                {Debuff.VISION_DOWN, debuffList[16] },
-                {Debuff.GK_HANDLING_DOWN, debuffList[17] },
-                {Debuff.GK_ONEONONE_DOWN, debuffList[18] },
-                {Debuff.GK_DIVING_DOWN, debuffList[19] }
-            };
-
             Buff buffEnum;
             Debuff debuffEnum;
+
+            Dictionary<Buff, string> buffDictonary = new Dictionary<Buff, string>();
+            Dictionary<Debuff, string> debuffDictonary = new Dictionary<Debuff, string>();
+
+            for (int i = 0; i < buffList.Count; i++)
+            {
+
+                buffDictonary.Add((Buff)i + 10, buffList[i]);
+                debuffDictonary.Add((Debuff)i, debuffList[i]);
+
+            }
 
             Random randomBuff = new Random();
             Random randomDebuff = new Random();
