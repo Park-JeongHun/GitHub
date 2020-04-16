@@ -194,230 +194,27 @@ namespace ConsoleFM_Project
             Random randomBuff = new Random();
             Random randomDebuff = new Random();
 
-            int buffNumb = randomBuff.Next(0, 56);
+            int buffNumb = randomBuff.Next(0, 20);
             int debuffNumb = randomDebuff.Next(0, 46);
 
             buffEnum = (Buff)buffNumb;
             debuffEnum = (Debuff)debuffNumb;
 
-            string buffOutput = "";
-            string debuffOutput = "";
-
-            switch (buffEnum)
+            for (int i = 0; i < buffList.Count + 1; i++) 
             {
 
-                case Buff.STRENGTH_UP:
-                    buffDictonary.TryGetValue(Buff.STRENGTH_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
+                if (i == buffNumb) Console.WriteLine(buffList[i]);
 
-                case Buff.STAMINA_UP:
-                    buffDictonary.TryGetValue(Buff.STAMINA_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.JUMPING_UP:
-                    buffDictonary.TryGetValue(Buff.JUMPING_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.SHOTPOWER_UP:
-                    buffDictonary.TryGetValue(Buff.SHOTPOWER_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.REFLECTION_UP:
-                    buffDictonary.TryGetValue(Buff.REFLECTION_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.AGILLITY_UP:
-                    buffDictonary.TryGetValue(Buff.AGILLITY_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.SPRINT_UP:
-                    buffDictonary.TryGetValue(Buff.SPRINT_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.ACCELERATION_UP:
-                    buffDictonary.TryGetValue(Buff.ACCELERATION_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.PASSINGACCURACY_UP:
-                    buffDictonary.TryGetValue(Buff.PASSINGACCURACY_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.HEADINGACCURACY_UP:
-                    buffDictonary.TryGetValue(Buff.HEADINGACCURACY_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.SHOTACCURACY_UP:
-                    buffDictonary.TryGetValue(Buff.SHOTACCURACY_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.DRIBBLE_UP:
-                    buffDictonary.TryGetValue(Buff.DRIBBLE_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.TACKLE_UP:
-                    buffDictonary.TryGetValue(Buff.TACKLE_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.SLIDINGTACKLE_UP:
-                    buffDictonary.TryGetValue(Buff.SLIDINGTACKLE_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.MANTOMAN_UP:
-                    buffDictonary.TryGetValue(Buff.MANTOMAN_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.POSITIONING_UP:
-                    buffDictonary.TryGetValue(Buff.POSITIONING_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.VISION_UP:
-                    buffDictonary.TryGetValue(Buff.VISION_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.GK_HANDLING_UP:
-                    buffDictonary.TryGetValue(Buff.GK_HANDLING_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.GK_ONEONONE_UP:
-                    buffDictonary.TryGetValue(Buff.GK_ONEONONE_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                case Buff.GK_DIVING_UP:
-                    buffDictonary.TryGetValue(Buff.GK_DIVING_UP, out buffOutput);
-                    Console.WriteLine(name + buffOutput);
-                    break;
-
-                default:
-                    Console.WriteLine("버프가 적용되지 않았습니다.");
-                    break;
+                else continue;
 
             }
 
-            switch (debuffEnum)
+            for (int i = 0; i < debuffList.Count + 1; i++) 
             {
 
-                case Debuff.STRENGTH_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.STRENGTH_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
+                if (i == debuffNumb) Console.WriteLine(debuffList[i]);
 
-                case Debuff.STAMINA_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.STAMINA_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.JUMPING_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.JUMPING_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.SHOTPOWER_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.SHOTPOWER_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.REFLECTION_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.REFLECTION_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.AGILLITY_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.AGILLITY_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.SPRINT_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.SPRINT_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.ACCELERATION_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.ACCELERATION_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.PASSINGACCURACY_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.PASSINGACCURACY_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.HEADINGACCURACY_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.HEADINGACCURACY_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.SHOTACCURACY_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.SHOTACCURACY_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.DRIBBLE_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.DRIBBLE_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.TACKLE_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.TACKLE_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.SLIDINGTACKLE_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.SLIDINGTACKLE_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.MANTOMAN_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.MANTOMAN_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.POSITIONING_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.POSITIONING_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.VISION_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.VISION_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.GK_HANDLING_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.GK_HANDLING_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.GK_ONEONONE_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.GK_ONEONONE_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                case Debuff.GK_DIVING_DOWN:
-                    debuffDictonary.TryGetValue(Debuff.GK_DIVING_DOWN, out debuffOutput);
-                    Console.WriteLine(name + debuffOutput);
-                    break;
-
-                default:
-                    Console.WriteLine("디버프가 적용되지 않았습니다.");
-                    break;
+                else continue;
 
             }
 
