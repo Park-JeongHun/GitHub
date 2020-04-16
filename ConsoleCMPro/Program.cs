@@ -194,7 +194,7 @@ namespace ConsoleFM_Project
             Random randomBuff = new Random();
             Random randomDebuff = new Random();
 
-            int buffNumb = randomBuff.Next(0, 20);
+            int buffNumb = randomBuff.Next(0, 45);
             int debuffNumb = randomDebuff.Next(0, 46);
 
             buffEnum = (Buff)buffNumb;
